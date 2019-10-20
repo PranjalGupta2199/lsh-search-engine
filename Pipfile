@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 requests = "*"
 bs4 = "*"
+sphinx = "*"
+rinohtype = "*"
 
 [requires]
 python_version = "3.7"
