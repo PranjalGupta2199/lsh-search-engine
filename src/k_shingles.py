@@ -1,6 +1,6 @@
 import os
 from hashlib import sha256 as sha
-
+from utils import CORPUS
 
 shingle_size = 9
 
@@ -13,10 +13,10 @@ def create_shingle():
     '''
     shingle_set = set()
     shingle_set_hashed = set()
-    dir = os.listdir("../corpus")
+    dir = os.listdir(CORPUS)
     dir.sort()
     for file in dir:
-        with open(os.path.join("../corpus", file), 'r') as file_obj:
+        with open(os.path.join(CORPUS, file), 'r') as file_obj:
             data = file_obj.read()
             for i in range(0, len(data) - shingle_size + 1):
                 shingle = data[i:i + shingle_size]
@@ -34,10 +34,10 @@ def create_shingle_matrix(shingle_set):
     :returns 2D array
     '''
     matrix_list = []
-    dir = os.listdir("../corpus")
+    dir = os.listdir(CORPUS)
     dir.sort()
     for file in dir:
-        with open(os.path.join("../corpus", file), 'r') as file_obj:
+        with open(os.path.join(CORPUS, file), 'r') as file_obj:
             temp_list = []
             data = str(file_obj.read())
             for shingle in shingle_set:

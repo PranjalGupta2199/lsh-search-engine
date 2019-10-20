@@ -11,7 +11,7 @@ def get_normal_vectors(number, dimensions):
 
     for it in range (number):
         rand_vector = [random.choice(comp) \
-            for d in range (len(dimensions))]
+            for d in range(dimensions)]
         norm_vector_list.append(rand_vector)
 
     return norm_vector_list
@@ -41,7 +41,8 @@ def find_signature_matrix(shingle_matrix, number=100):
     norm_vectors = get_normal_vectors(number, dimension)
 
 
-    signature_matrix = []
+    signature_matrix = [[0 for i in range (doc_len)] 
+                         for i in range (number)]
 
     for doc_id in range(doc_len):
         hash_vector = [shingle_matrix [var][doc_id]

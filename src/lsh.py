@@ -1,14 +1,14 @@
 import zlib
 import itertools
 
-
+bucket_size = 100
 band = 4
 
 def locality_sensitive_hashing(signature_matrix):
     band_size = int(len(signature_matrix)/band)
     doc_size = len(signature_matrix[0])
     bucket = {}
-    bucket_size = 100
+   
 
     if (len(signature_matrix)%band != 0):
         band_size += 1
@@ -24,12 +24,13 @@ def locality_sensitive_hashing(signature_matrix):
                     for row in range(var*band_size,len(signature_matrix))]
 
             hash_val = zlib.crc32(bytes(hash_vector)) % bucket_size
+            bucket_id = int(hash_val / 20)
 
-            if (temp_bucket.get(hash_val) == None):
-                temp_bucket[hash_val] = set()
+            if (temp_bucket.get(bucket_id) == None):
+                temp_bucket[bucket_id] = set()
 
-            temp_bucket[hash_val].add(doc_id)
-        bucket[band] = temp_bucket
+            temp_bucket[bucket_id].add(doc_id)
+        bucket[var] = temp_bucket
 
     return bucket
 

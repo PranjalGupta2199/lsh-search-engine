@@ -7,7 +7,7 @@ def find_signature_matrix(shingle_matrix, number=100):
     '''
     dimension = len(shingle_matrix)
 
-    signature_matrix = [shingle_matrix[random.randint(0, dimension)]
+    signature_matrix = [shingle_matrix[random.randint(0, dimension-1)]
                         for it in range(number)]
 
     return signature_matrix

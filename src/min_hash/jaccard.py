@@ -39,7 +39,7 @@ def find_signature_matrix(matrix):
     # Update the similarity matrix for each hash function
     for x in range(len(matrix)):
         for y in range(100):
-            hash_value = ((min_hash_functions[y][0]*(x+1)) + min_hash_functions[y][1])%50
+            hash_value = ((min_hash_functions[y][0]*(x+1)) + min_hash_functions[y][1]) % 197
             for z in range(len(matrix[0])):
                 if matrix[x][z] == 1:
                     if hash_value < similarity_matrix[y][z]:
