@@ -2,26 +2,26 @@ import zlib
 import itertools
 
 
-band_size = 4
+band = 4
 
-def locality_sensitive_hashing(sim_matrix):
-    band_row_size = int(len(sim_matrix)/band_size)
-    doc_size = len(sim_matrix[0])
+def locality_sensitive_hashing(signature_matrix):
+    band_size = int(len(signature_matrix)/band)
+    doc_size = len(signature_matrix[0])
     bucket = {}
     bucket_size = 100
 
-    if (len(sim_matrix)%band_size != 0):
-        band_row_size += 1
+    if (len(signature_matrix)%band != 0):
+        band_size += 1
 
-    for band in range(0,band_size):
+    for var in range(0,band):
         for doc_id in range(doc_size):
             try:
-                hash_vector = [sim_matrix[row][doc_id]
-                    for row in range(band*band_row_size, \
-                        (band+1)*band_row_size)]
+                hash_vector = [signature_matrix[row][doc_id]
+                    for row in range(var*band_size, \
+                        (var+1)*band_size)]
             except IndexError:
-                hash_vector = hash_vector = [sim_matrix[row][doc_id] \
-                    for row in range(band*band_row_size,len(sim_matrix))]
+                hash_vector = [signature_matrix[row][doc_id] \
+                    for row in range(var*band_size,len(signature_matrix))]
 
             hash_val = zlib.crc32(bytes(hash_vector)) % bucket_size
 

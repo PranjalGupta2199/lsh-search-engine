@@ -17,7 +17,7 @@ def get_min_hash_functions():
     return result
 
 
-def find_sim_matrix(matrix):
+def find_signature_matrix(matrix):
     """
     Generates the similarity matrix of the documents based on the technique of min hashing
     :param matrix: Binary matrix (shingles * documents) which is formed after the shingling process
@@ -58,5 +58,5 @@ if __name__ == "__main__":
             vector.append(random.randint(0, 1))
         test_array.append(vector)
 
-    similarity_matrix = find_sim_matrix(test_array)
+    similarity_matrix = find_signature_matrix(test_array)
     print(similarity_matrix)
