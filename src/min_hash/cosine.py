@@ -6,7 +6,7 @@ def get_normal_vectors(number, dimensions):
     Generate 'n' normal vectors for hyperplanes
     '''
 
-    comp = [1,-1]
+    comp = [1, -1]
     norm_vector_list = []
 
     for it in range (number):
@@ -25,7 +25,7 @@ def dot_product(vector_A, vector_B):
     val = 0
 
     for comp1, comp2 in zip(vector_A, vector_B):
-        val += comp1*comp2
+        val += comp1 * comp2
 
     return val > 0
 
