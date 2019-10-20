@@ -33,8 +33,9 @@ pipenv shell
 >>> nltk.download('wordnet')
 >>> exit()
 ```
-* Run the **search.py** file to make query.
+* Move to the src/ folder and run the **search.py** file to make query.
 ```bash
+cd src/
 python search.py
 ```
 

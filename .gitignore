@@ -1,2 +1,2 @@
 corpus/*.md
-__pycache__/*
+__pycache__/
