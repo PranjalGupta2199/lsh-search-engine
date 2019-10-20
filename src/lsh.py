@@ -17,19 +17,17 @@ def locality_sensitive_hashing(signature_matrix):
         for doc_id in range(doc_size):
             try:
                 hash_vector = [signature_matrix[row][doc_id]
-                    for row in range(var*band_size, \
-                        (var+1)*band_size)]
+                    for row in range(var*band_size,(var+1)*band_size)]
             except IndexError:
-                hash_vector = [signature_matrix[row][doc_id] \
+                hash_vector = [signature_matrix[row][doc_id]
                     for row in range(var*band_size,len(signature_matrix))]
 
             hash_val = zlib.crc32(bytes(hash_vector)) % bucket_size
 
             if (bucket.get(hash_val) == None):
                 bucket[hash_val] = set()
-                bucket[hash_val].add(doc_id)
-            else:
-                bucket[hash_val].add(doc_id)
+
+            bucket[hash_val].add(doc_id)
 
     return bucket
 
