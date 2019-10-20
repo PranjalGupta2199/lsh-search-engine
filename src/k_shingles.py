@@ -13,8 +13,10 @@ def create_shingle():
     '''
     shingle_set = set()
     shingle_set_hashed = set()
-    for file in os.listdir("corpus/").sort():
-        with open(os.path.join("corpus", file), 'r') as file_obj:
+    dir = os.listdir("../corpus")
+    dir.sort()
+    for file in dir:
+        with open(os.path.join("../corpus", file), 'r') as file_obj:
             data = file_obj.read()
             for i in range(0, len(data) - shingle_size + 1):
                 shingle = data[i:i + shingle_size]
@@ -32,8 +34,10 @@ def create_shingle_matrix(shingle_set):
     :returns 2D array
     '''
     matrix_list = []
-    for file in os.listdir("corpus/"):
-        with open(os.path.join("corpus", file), 'r') as file_obj:
+    dir = os.listdir("../corpus")
+    dir.sort()
+    for file in dir:
+        with open(os.path.join("../corpus", file), 'r') as file_obj:
             temp_list = []
             data = str(file_obj.read())
             for shingle in shingle_set:
@@ -42,7 +46,8 @@ def create_shingle_matrix(shingle_set):
                 else:
                     temp_list.append(1)
             matrix_list.append(temp_list)
-    return matrix_list
+
+    return list(map(list,zip(*matrix_list)))
 
 
 def print_shingle_matrix(matrix_list):

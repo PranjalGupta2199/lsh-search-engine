@@ -14,6 +14,7 @@ def locality_sensitive_hashing(signature_matrix):
         band_size += 1
 
     for var in range(0,band):
+        temp_bucket = {}
         for doc_id in range(doc_size):
             try:
                 hash_vector = [signature_matrix[row][doc_id]
@@ -24,10 +25,11 @@ def locality_sensitive_hashing(signature_matrix):
 
             hash_val = zlib.crc32(bytes(hash_vector)) % bucket_size
 
-            if (bucket.get(hash_val) == None):
-                bucket[hash_val] = set()
+            if (temp_bucket.get(hash_val) == None):
+                temp_bucket[hash_val] = set()
 
-            bucket[hash_val].add(doc_id)
+            temp_bucket[hash_val].add(doc_id)
+        bucket[band] = temp_bucket
 
     return bucket
 
